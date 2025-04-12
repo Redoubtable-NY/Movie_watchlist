@@ -43,7 +43,8 @@ async function movieSearchResults(movieTitle){
         }
     
         for(id of filmIDs){
-            const idResp = await fetch(`http://www.omdbapi.com/?i=${id}&apikey=f620b288&type=movie`)
+            // https instead of http
+            const idResp = await fetch(`https://www.omdbapi.com/?i=${id}&apikey=f620b288&type=movie`)
             const idData = await idResp.json()
             returnedFilmsIdData.push(
             {
