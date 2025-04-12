@@ -26,7 +26,7 @@ async function movieSearchResults(movieTitle){
         const returnedFilms = []
         const returnedFilmsIdData = []
         let moviesPlusPlots = []
-        const resp = await fetch(`http://www.omdbapi.com/?i=tt3896198&apikey=f620b288&s=${movieTitle}`)
+        const resp = await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=f620b288&s=${movieTitle}`)
         const data = await resp.json() 
         const filmSearchResults = data.Search
         const filmIDs = filmSearchResults.map(function(film){
