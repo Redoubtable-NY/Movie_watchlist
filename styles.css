@@ -1,0 +1,430 @@
+/* Things to keep in mind:
+    - Proof your styles at the end
+    - DRY combine styles when they're being applied the same way across elements
+    - Keep things responsive avoid absolute measurements wherever possible
+    - Re-visit your use of flex, are you using grow in the right way?
+    - Avoid the tendancy to use auto-complete for values you don't understand, the only person you're cheating is yourself.
+*/
+
+body{
+    font-family: "Inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+}
+/* 100% is not the same as 100vh for height. !00% says make the height as tall as its contents while 100vh is 
+centered around making the content equivalent to 100% of the viewport height.*/
+/* Do we always set the height and width at a 100vh and 100% respectively in terms of best practices? */
+
+
+/* Header Layout*/
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.watchlist-header-container{
+    height: 208px;
+    grid-template-rows: repeat(3, 1fr);
+    display: grid;
+    justify-items: center;
+}
+
+#watchlist-header-background{
+    background-color: #0E0E0E;
+    object-fit: cover;
+    width: 100%;
+    height: 208px;
+    position: absolute;
+    z-index: -1;
+}
+
+#watchlist-films-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+}
+
+#icon-plus-default-message-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+#header-background{
+    background-color: #0E0E0E;
+    width: 100%;
+    height: 208px;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+}
+
+#header-link-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 462px;
+    margin-top: 56px;
+    grid-row: 1/2;
+}
+
+#movie-search{
+    border: none;
+    margin-left: 8px;
+    height: 36px;
+    width: 91.5%;
+}
+
+#movie-search:focus-visible{
+    outline: none;
+}
+
+form{
+    background-color: #FFFFFF;
+    margin-top: 24px;
+    border: 1px #D1D5DB solid;
+    border-radius: 6px;
+    width: 462px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding-left: 12px;
+    height: 36px;
+}
+
+form div{
+    display: flex;
+    align-items: center;
+    flex-grow: 2;
+}
+
+form #submit-button{
+    height: 36px;
+    width: 120px;
+    background-color: #F9FAFB;
+    border: 1px #D1D5DB solid;
+    cursor: pointer;
+}
+
+/* Header Typography */
+
+#header-link-container h1{
+    font-size: 42px;
+    color: #FFFFFF;
+}
+
+#header-link-container a{
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#movie-search{
+    font-size: 14px;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+form #submit-button{
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Main Layout */
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+#film-list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.default-watchlist-message-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.film-search-error-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 321px;
+}
+
+.movie-icon-message-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-result-container{
+    align-self: center;
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    column-gap: 20px;
+    grid-template-areas: 
+    "post ftc ftc"
+    "post ftc ftc"
+    "post ftc ftc";
+    width: 84%;
+    max-height: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.watchlist-films-container{
+    align-self: center;
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    column-gap: 20px;
+    grid-template-areas: 
+    "post ftc ftc"
+    "post ftc ftc"
+    "post ftc ftc";
+    width: 84%;
+    max-height: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.search-result-container:first-child{
+    margin-top: 44px;
+}
+
+.search-result-container:last-child{
+    border-bottom: none;
+    margin-bottom: 32px;
+}
+
+.watchlist-films-container:first-child{
+    margin-top: 36px;
+}
+
+.watchlist-films-container:last-child{
+    border-bottom: none;
+    margin-bottom: 32px;
+}
+
+
+.film-search-results-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.film-text-container{
+    display: grid;
+    grid-area: ftc;
+    grid-template: 
+    "ftr"
+    "fd"
+    "fp";
+    grid-template-rows: min-content min-content min-content;
+}
+
+.search-result-container img{
+    height: 80px;
+    width: 50px;
+    object-fit: cover;
+}
+
+.watchlist-films-container img{
+    height: 80px;
+    width: 50px;
+    object-fit: cover;
+}
+
+.poster-container{
+    grid-area: post;
+    height: 150px;
+}
+
+.poster-container img{
+    width: 100%;
+    height: 150px;
+    border-radius: 4px;
+}
+
+.film-title-rating-container{
+    grid-area: ftr;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-top: 16px;
+    margin-bottom: 12px;
+}
+
+.film-title-rating-container img{
+    width: 16px;
+    height: 16px;
+}
+
+.film-title, .film-rating{
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+.film-details-container{
+    grid-area: fd;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 0px;
+    margin-bottom: 12px;
+}
+
+.film-details{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.film-details:nth-child(1){
+    margin-right: 16px;
+}
+
+.film-plot{
+    margin-top: 8px;
+}
+
+.add-to-watchlist-container img{
+    width: 16px;
+    height: 16px;
+}
+
+.add-to-watchlist-container{
+    display: flex;
+    align-items: center;
+}
+
+.film-plot{
+    grid-area: fp;
+    margin: 0;
+    padding: 0;
+}
+
+.watchlist-add-cta{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.watchlist-remove-cta{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.remove-movie-container{
+    display: flex;
+    align-items: center;
+}
+
+.remove-movie-container img{
+    width: 16px;
+    height: 16px;
+}
+
+.film-cta-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.hidden{
+    display: none;
+}
+
+/* Main Typography */
+
+#default-message{
+    font-size: 24px;
+    color: #DFDDDD;
+}
+
+.film-title{
+    font-size: 18px;
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.film-rating{
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+.film-details{
+font-size: 12px;
+color: #111827;
+}
+
+.film-plot{
+    font-size: 14px;
+    color: #6B7280;
+}
+
+.watchlist-cta{
+    font-size: 12px;
+    color: #111827;
+}
+
+/* Watchlist Page */
+
+#watchlist-add-movie-link{
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #363636;
+}
+
+#error-message{
+    font-weight: 700;
+    font-size: 18px;
+    color: #DFDDDD;
+}
+
+#watchlist-default-message{
+    font-size: 18px;
+    font-weight: 700;
+    color: #DFDDDD;
+}
+
+.films-in-watchlist-container{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide elements across all pages */
+
+.hidden{
+    display: none;
+}
+
+
+
+
+
+
+
+

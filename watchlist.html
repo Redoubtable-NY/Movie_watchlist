@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>View your films</title>
+</head>
+<body>
+    <header class="watchlist-header-container">
+        <img src="/images/Site-header.png" id="watchlist-header-background" alt="Decorative background">
+        <div id="header-link-container">
+            <h1>Find your film</h1>
+            <a href="/index.html">Search for movies</a>
+        </div>
+    </header> 
+    <main>
+        <section id="watchlist-films-container">
+            <div class="default-watchlist-message-container">
+                <p id="watchlist-default-message">Your watchlist is looking a little empty...</p>
+                <div id="icon-plus-default-message-container">
+                        <img src="/images/Add-Icon.png" alt="add icon">
+                        <a id="watchlist-add-movie-link" href="/index.html">Let’s add some movies!</a>
+                </div>
+            </div>
+            <section class="films-in-watchlist-container"></section>
+        </section>
+    </main>
+</body>
+<script src="watchlist.js"></script>
+</html>
