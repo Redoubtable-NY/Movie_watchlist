@@ -54,7 +54,6 @@ document.addEventListener("click", function(e){
     if(e.target.className === "watchlist-remove-cta"){
         let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
         localStorage.removeItem(`film-${moviePlusPlotsUniqueId}`)
-        // this.location.reload()
         e.target.parentElement.parentElement.parentElement.parentElement.parentElement.remove()
         pageReset()
     }else{
@@ -70,7 +69,3 @@ function pageReset(){
 
     }
 }
-
-// Add the fucntionality to remove items from your watchlist. 
-// Clean up your css, and call it a day! 
-// You're done with this independent project!
