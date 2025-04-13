@@ -5,8 +5,6 @@ const movieIconMessageContainer = document.querySelector(".movie-icon-message-co
 const filmSearchResultsContainer = document.querySelector(".film-search-results-container")
 const filmSearchErrorContainer = document.querySelector(".film-search-error-container")
 
-console.log(localStorage.length)
-
 searchBar.addEventListener("submit", function(e){
     e.preventDefault()
     const searchValue = searchBarElements[0].value
@@ -41,21 +39,40 @@ async function movieSearchResults(movieTitle){
 
 
     
-        for(id of filmIDs){
-            // https instead of http
-            const idResp = await fetch(`https://www.omdbapi.com/?i=${id}&apikey=f620b288&type=movie`)
-            const idData = await idResp.json()
-            returnedFilmsIdData.push(
-            {
-                "Genre": idData.Genre,  
-                "Plot": idData.Plot,
-                "Rating": idData.imdbRating,
-                "Runtime": idData.Runtime
-            }
-            )
-        }
+        // for(id of filmIDs){
+        //     const idResp = await fetch(`https://www.omdbapi.com/?i=${id}&apikey=f620b288&type=movie`)
+        //     const idData = await idResp.json()
+        //     console.log(idData)
+        //     returnedFilmsIdData.push(
+        //     {
+        //         "Genre": idData.Genre,  
+        //         "Plot": idData.Plot,
+        //         "Rating": idData.imdbRating,
+        //         "Runtime": idData.Runtime
+        //     }
+        //     )
+        // }
 
-        // const fetchMovieDetails = filmIDs.map
+        const fetchMovieDetails = filmIDs.map(id => fetch(`https://www.omdbapi.com/?i=${id}&apikey=f620b288&type=movie`)
+            .then(res => res.json())
+        )
+
+        const movieDetailsArray = await Promise.all(fetchMovieDetails)
+        console.log(movieDetailsArray)
+
+        // Promise.all is a powerful and helpful aid.
+
+        movieDetailsArray.forEach(movieData => {
+            returnedFilmsIdData.push(
+                {
+                "Genre": movieData.Genre,  
+                "Plot": movieData.Plot,
+                "Rating": movieData.imdbRating,
+                "Runtime": movieData.Runtime                    
+                }
+            )
+        })
+
 
 
     
