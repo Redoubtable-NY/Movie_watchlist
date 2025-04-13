@@ -152,6 +152,7 @@ async function movieSearchResults(movieTitle){
         }
 
     }catch(error){
+        document.querySelector(".loading-message-container").classList.add("hidden")
         filmSearchErrorContainer.classList.remove("hidden")
         filmSearchResultsContainer.classList.add("hidden")
         document.getElementById("error-message").innerText = `We encountered an error. Please try another film search - less specific searches work best.`
