@@ -12,8 +12,6 @@ if(localStorage.length > 0){
                 watchlistFilms.push(JSON.parse(localStorage.getItem(key)))
         }
     renderTest()
-    }else{
-
     }
 
 function renderTest(){
@@ -51,13 +49,11 @@ function renderTest(){
     }
 
 document.addEventListener("click", function(e){
-    if(e.target.className === "watchlist-remove-cta"){
-        let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
-        localStorage.removeItem(`film-${moviePlusPlotsUniqueId}`)
-        e.target.parentElement.parentElement.parentElement.parentElement.parentElement.remove()
-        pageReset()
-    }else{
-
+        if(e.target.className === "watchlist-remove-cta"){
+            let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
+            localStorage.removeItem(`film-${moviePlusPlotsUniqueId}`)
+            e.target.closest(".watchlist-films-container").remove()
+            pageReset()
         }
     }
 )
@@ -65,7 +61,5 @@ document.addEventListener("click", function(e){
 function pageReset(){
     if(localStorage.length <= 1){
         this.location.reload()
-    }else{
-
     }
 }
