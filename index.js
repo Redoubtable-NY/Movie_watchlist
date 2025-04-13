@@ -4,6 +4,7 @@ const filmListContainer = document.querySelector("#film-list-container")
 const movieIconMessageContainer = document.querySelector(".movie-icon-message-container")
 const filmSearchResultsContainer = document.querySelector(".film-search-results-container")
 const filmSearchErrorContainer = document.querySelector(".film-search-error-container")
+const moviesPlusPlots = []
 
 searchBar.addEventListener("submit", function(e){
     e.preventDefault()
@@ -20,7 +21,8 @@ async function movieSearchResults(movieTitle){
         filmSearchResultsContainer.innerHTML = ""
         const returnedFilms = []
         const returnedFilmsIdData = []
-        let moviesPlusPlots = []
+        // let moviesPlusPlots = []
+        moviesPlusPlots.length = 0
         const resp = await fetch(`https://www.omdbapi.com/?i=tt3896198&apikey=f620b288&s=${movieTitle}`)
         const data = await resp.json() 
         const filmSearchResults = data.Search
@@ -145,24 +147,41 @@ async function movieSearchResults(movieTitle){
            }
         }
         
-        document.addEventListener("click", function(e){
-            if(e.target.className === "watchlist-add-cta"){
-                e.target.parentElement.classList.add("hidden")
-                e.target.parentElement.parentElement.childNodes[3].classList.remove("hidden")
-                let moviePlusPlotsIndexValue = parseInt(e.target.dataset.movieppkey)
-                let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
-                let jsonFilm = JSON.stringify(moviesPlusPlots[moviePlusPlotsIndexValue])
-                localStorage.setItem(`film-${moviePlusPlotsUniqueId}`, jsonFilm)
-            }else if(e.target.className === "watchlist-remove-cta"){
-                e.target.parentElement.classList.add("hidden")
-                e.target.parentElement.parentElement.childNodes[1].classList.remove("hidden")
-                let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
-                localStorage.removeItem(`film-${moviePlusPlotsUniqueId}`)
-            }
-        })
+        // document.addEventListener("click", function(e){
+        //     if(e.target.className === "watchlist-add-cta"){
+        //         e.target.parentElement.classList.add("hidden")
+        //         e.target.parentElement.parentElement.childNodes[3].classList.remove("hidden")
+        //         let moviePlusPlotsIndexValue = parseInt(e.target.dataset.movieppkey)
+        //         let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
+        //         let jsonFilm = JSON.stringify(moviesPlusPlots[moviePlusPlotsIndexValue])
+        //         localStorage.setItem(`film-${moviePlusPlotsUniqueId}`, jsonFilm)
+        //     }else if(e.target.className === "watchlist-remove-cta"){
+        //         e.target.parentElement.classList.add("hidden")
+        //         e.target.parentElement.parentElement.childNodes[1].classList.remove("hidden")
+        //         let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
+        //         localStorage.removeItem(`film-${moviePlusPlotsUniqueId}`)
+        //     }
+        // })
+        
     }catch(error){
         filmSearchErrorContainer.classList.remove("hidden")
         filmSearchResultsContainer.classList.add("hidden")
         document.getElementById("error-message").innerText = `We encountered an error. Please try another film search - less specific searches work best.`
     }
 }
+
+document.addEventListener("click", function(e){
+    if(e.target.className === "watchlist-add-cta"){
+        e.target.parentElement.classList.add("hidden")
+        e.target.parentElement.parentElement.childNodes[3].classList.remove("hidden")
+        let moviePlusPlotsIndexValue = parseInt(e.target.dataset.movieppkey)
+        let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
+        let jsonFilm = JSON.stringify(moviesPlusPlots[moviePlusPlotsIndexValue])
+        localStorage.setItem(`film-${moviePlusPlotsUniqueId}`, jsonFilm)
+    }else if(e.target.className === "watchlist-remove-cta"){
+        e.target.parentElement.classList.add("hidden")
+        e.target.parentElement.parentElement.childNodes[1].classList.remove("hidden")
+        let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
+        localStorage.removeItem(`film-${moviePlusPlotsUniqueId}`)
+    }
+})
