@@ -5,9 +5,6 @@ const movieIconMessageContainer = document.querySelector(".movie-icon-message-co
 const filmSearchResultsContainer = document.querySelector(".film-search-results-container")
 const filmSearchErrorContainer = document.querySelector(".film-search-error-container")
 
-let returnedFilms = []
-let returnedFilmPlots = []
-
 console.log(localStorage.length)
 
 searchBar.addEventListener("submit", function(e){
@@ -30,7 +27,7 @@ async function movieSearchResults(movieTitle){
         const data = await resp.json() 
         const filmSearchResults = data.Search
         const filmIDs = filmSearchResults.map(function(film){
-            return film.imdbID.substring(0,10)
+            return film.imdbID
         })
         for(film of filmSearchResults){
             returnedFilms.push(
@@ -41,6 +38,8 @@ async function movieSearchResults(movieTitle){
                 }
             )
         }
+
+
     
         for(id of filmIDs){
             // https instead of http
@@ -55,6 +54,10 @@ async function movieSearchResults(movieTitle){
             }
             )
         }
+
+        // const fetchMovieDetails = filmIDs.map
+
+
     
         for(let i = 0; i < returnedFilms.length; i++){
             moviesPlusPlots.push(
@@ -70,8 +73,8 @@ async function movieSearchResults(movieTitle){
             )
         }
         
-        if(localStorage.length=0){
-            for(let i=0; i < 10; i++){
+        if(localStorage.length===0){
+            for(let i=0; i < moviesPlusPlots.length; i++){
             filmSearchResultsContainer.innerHTML += `
                 <div class="search-result-container">
                     <div class="poster-container">
@@ -198,9 +201,6 @@ async function movieSearchResults(movieTitle){
                 e.target.parentElement.parentElement.childNodes[1].classList.remove("hidden")
                 let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
                 localStorage.removeItem(`film-${moviePlusPlotsUniqueId}`)
-            }
-            else{
-
             }
         })
     }catch(error){
