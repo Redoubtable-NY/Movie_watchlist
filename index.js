@@ -9,15 +9,16 @@ const moviesPlusPlots = []
 searchBar.addEventListener("submit", function(e){
     e.preventDefault()
     const searchValue = searchBarElements[0].value
+    filmSearchErrorContainer.classList.add("hidden")
+    filmSearchResultsContainer.classList.remove("hidden")
+    movieIconMessageContainer.style.display = "none"
+    document.querySelector(".loading-message-container").classList.remove("hidden")
     movieSearchResults(searchValue)
 })
 
 
 async function movieSearchResults(movieTitle){
     try {
-        filmSearchErrorContainer.classList.add("hidden")
-        filmSearchResultsContainer.classList.remove("hidden")
-        movieIconMessageContainer.style.display = "none"
         filmSearchResultsContainer.innerHTML = ""
         const returnedFilms = []
         const returnedFilmsIdData = []
@@ -55,8 +56,6 @@ async function movieSearchResults(movieTitle){
             )
         })
 
-
-
     
         for(let i = 0; i < returnedFilms.length; i++){
             moviesPlusPlots.push(
@@ -74,13 +73,18 @@ async function movieSearchResults(movieTitle){
 
         const localStorageKeys = Object.keys(localStorage)
         const cleanKeys = localStorageKeys.map(function(filmKey){
-            return filmKey.substring(5, 14)
+            return filmKey.substring(5, filmKey.length)
             }
         )
-        
+        console.log(cleanKeys)
+
+        document.querySelector(".loading-message-container").classList.add("hidden")
+
         for(let i=0; i < moviesPlusPlots.length; i++){
+            console.log(moviesPlusPlots[i].imdbID)
            if(cleanKeys.includes(moviesPlusPlots[i].imdbID)){
-                filmSearchResultsContainer.innerHTML += `
+            console.log("match")    
+            filmSearchResultsContainer.innerHTML += `
                         <div class="search-result-container">
                             <div class="poster-container">
                                 <img src=${moviesPlusPlots[i].Poster} class="film-poster" alt="${moviesPlusPlots[i].Title} poster">
@@ -112,6 +116,7 @@ async function movieSearchResults(movieTitle){
                         </div>
                         `
            }else{
+            console.log("no match")
             filmSearchResultsContainer.innerHTML += `
                 <div class="search-result-container">
                     <div class="poster-container">
