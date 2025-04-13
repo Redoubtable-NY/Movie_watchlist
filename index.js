@@ -42,7 +42,6 @@ async function movieSearchResults(movieTitle){
         )
 
         const movieDetailsArray = await Promise.all(fetchMovieDetails)
-        console.log(movieDetailsArray)
 
         movieDetailsArray.forEach(movieData => {
             returnedFilmsIdData.push(
@@ -145,131 +144,16 @@ async function movieSearchResults(movieTitle){
                 `
            }
         }
-
-        // if(localStorage.length===0){
-        //     for(let i=0; i < moviesPlusPlots.length; i++){
-        //     filmSearchResultsContainer.innerHTML += `
-        //         <div class="search-result-container">
-        //             <div class="poster-container">
-        //                 <img src=${moviesPlusPlots[i].Poster} class="film-poster" alt="${moviesPlusPlots[i].Title} poster">
-        //             </div>
-        //             <div class="film-text-container">
-        //                 <div class="film-title-rating-container">
-        //                     <h2 class="film-title">${moviesPlusPlots[i].Title}</h2> 
-        //                     <img src="/images/Star-Icon.svg" alt="star icon">
-        //                     <h3 class="film-rating">${moviesPlusPlots[i].Rating}</h3>
-        //                 </div>
-        //                 <div class="film-details-container">
-        //                     <div class="film-runtime-and-genre-container">
-        //                         <p class="film-details">${moviesPlusPlots[i].Runtime}</p>
-        //                         <p class="film-details">${moviesPlusPlots[i].Genre}</p>
-        //                     </div>
-        //                     <section class="film-cta-container">
-        //                         <div class="add-to-watchlist-container">
-        //                             <img src="/images/Add-Icon.png" alt="add icon">
-        //                             <button class="watchlist-add-cta" data-title="$${moviesPlusPlots[i].Title}" data-moviePPkey="${i}" data-arrayIdentifier="${moviesPlusPlots[i].imdbID}">Watchlist</button>
-        //                         </div>
-        //                         <div class="remove-movie-container hidden">
-        //                             <img src="/images/Remove-Icon.png" alt="add icon">
-        //                             <button class="watchlist-remove-cta" data-arrayIdentifier="${moviesPlusPlots[i].imdbID}">Remove</button>
-        //                         </div>
-        //                     <section>
-        //                 </div>
-        //                 <p class="film-plot">${moviesPlusPlots[i].Plot}</p>
-        //             </div>
-        //         </div>
-        //         `
-        //     }
-        // }else{
-        //     const localStorageKeys = Object.keys(localStorage)
-        //     const cleanKeys = localStorageKeys.map(function(filmKey){
-        //         return filmKey.substring(5, 14)
-        //         }
-        //     )
-        //     for(let i=0; i < 10; i++){
-        //         // if(cleanKeys[i] === moviesPlusPlots[i].imdbID){
-        //         if(cleanKeys.includes(moviesPlusPlots[i].imdbID)){
-        //             console.log(moviesPlusPlots[i].imdbID, moviesPlusPlots[i].Title)
-        //             filmSearchResultsContainer.innerHTML += `
-        //             <div class="search-result-container">
-        //                 <div class="poster-container">
-        //                     <img src=${moviesPlusPlots[i].Poster} class="film-poster" alt="${moviesPlusPlots[i].Title} poster">
-        //                 </div>
-        //                 <div class="film-text-container">
-        //                     <div class="film-title-rating-container">
-        //                         <h2 class="film-title">${moviesPlusPlots[i].Title}</h2> 
-        //                         <img src="/images/Star-Icon.svg" alt="star icon">
-        //                         <h3 class="film-rating">${moviesPlusPlots[i].Rating}</h3>
-        //                     </div>
-        //                     <div class="film-details-container">
-        //                         <div class="film-runtime-and-genre-container">
-        //                             <p class="film-details">${moviesPlusPlots[i].Runtime}</p>
-        //                             <p class="film-details">${moviesPlusPlots[i].Genre}</p>
-        //                         </div>
-        //                         <section class="film-cta-container">
-        //                             <div class="add-to-watchlist-container hidden">
-        //                                 <img src="/images/Add-Icon.png" alt="add icon">
-        //                                 <button class="watchlist-add-cta" data-title="$${moviesPlusPlots[i].Title}" data-moviePPkey="${i}" data-arrayIdentifier="${moviesPlusPlots[i].imdbID}">Watchlist</button>
-        //                             </div>
-        //                             <div class="remove-movie-container">
-        //                                 <img src="/images/Remove-Icon.png" alt="remove icon">
-        //                                 <button class="watchlist-remove-cta" data-arrayIdentifier="${moviesPlusPlots[i].imdbID}">Remove</button>
-        //                             </div>
-        //                         <section>
-        //                     </div>
-        //                     <p class="film-plot">${moviesPlusPlots[i].Plot}</p>
-        //                 </div>
-        //             </div>
-        //             `
-        //         }else{
-        //             filmSearchResultsContainer.innerHTML += `
-        //             <div class="search-result-container">
-        //                 <div class="poster-container">
-        //                     <img src=${moviesPlusPlots[i].Poster} class="film-poster" alt="${moviesPlusPlots[i].Title} poster">
-        //                 </div>
-        //                 <div class="film-text-container">
-        //                     <div class="film-title-rating-container">
-        //                         <h2 class="film-title">${moviesPlusPlots[i].Title}</h2> 
-        //                         <img src="/images/Star-Icon.svg" alt="star icon">
-        //                         <h3 class="film-rating">${moviesPlusPlots[i].Rating}</h3>
-        //                     </div>
-        //                     <div class="film-details-container">
-        //                         <div class="film-runtime-and-genre-container">
-        //                             <p class="film-details">${moviesPlusPlots[i].Runtime}</p>
-        //                             <p class="film-details">${moviesPlusPlots[i].Genre}</p>
-        //                         </div>
-        //                         <section class="film-cta-container">
-        //                             <div class="add-to-watchlist-container">
-        //                                 <img src="/images/Add-Icon.png" alt="add icon">
-        //                                 <button class="watchlist-add-cta" data-title="$${moviesPlusPlots[i].Title}" data-moviePPkey="${i}" data-arrayIdentifier="${moviesPlusPlots[i].imdbID}">Watchlist</button>
-        //                             </div>
-        //                             <div class="remove-movie-container hidden">
-        //                                 <img src="/images/Remove-Icon.png" alt="remove icon">
-        //                                 <button class="watchlist-remove-cta" data-arrayIdentifier="${moviesPlusPlots[i].imdbID}">Remove</button>
-        //                             </div>
-        //                         <section>
-        //                     </div>
-        //                     <p class="film-plot">${moviesPlusPlots[i].Plot}</p>
-        //                 </div>
-        //             </div>
-        //             `
-        //         }
-        //     }
-        // }
         
         document.addEventListener("click", function(e){
             if(e.target.className === "watchlist-add-cta"){
-                console.log(e.target)
                 e.target.parentElement.classList.add("hidden")
                 e.target.parentElement.parentElement.childNodes[3].classList.remove("hidden")
                 let moviePlusPlotsIndexValue = parseInt(e.target.dataset.movieppkey)
                 let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
                 let jsonFilm = JSON.stringify(moviesPlusPlots[moviePlusPlotsIndexValue])
                 localStorage.setItem(`film-${moviePlusPlotsUniqueId}`, jsonFilm)
-                console.log(localStorage)
             }else if(e.target.className === "watchlist-remove-cta"){
-                console.log(e.target)
-                console.log(e.target.parentElement)
                 e.target.parentElement.classList.add("hidden")
                 e.target.parentElement.parentElement.childNodes[1].classList.remove("hidden")
                 let moviePlusPlotsUniqueId = e.target.dataset.arrayidentifier
@@ -281,8 +165,4 @@ async function movieSearchResults(movieTitle){
         filmSearchResultsContainer.classList.add("hidden")
         document.getElementById("error-message").innerText = `We encountered an error. Please try another film search - less specific searches work best.`
     }
-}
-
-function test(){
-    console.log(watchlistFilms)
 }
