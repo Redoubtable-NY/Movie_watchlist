@@ -12,6 +12,7 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 main{
@@ -28,20 +29,10 @@ main{
 }
 
 .film-details:nth-child(1){
-    margin-right: 16px;
+    margin-right: 1em;
 }
 
-.film-title-rating-container img{
-    width: 16px;
-    height: 16px;
-}
-
-.remove-movie-container img{
-    width: 16px;
-    height: 16px;
-}
-
-.add-to-watchlist-container img{
+.film-title-rating-container img, .remove-movie-container img, .add-to-watchlist-container img{
     width: 16px;
     height: 16px;
 }
@@ -60,8 +51,8 @@ main{
 
 #header-background{
     background-color: #0E0E0E;
+    height: 92%;
     width: 100%;
-    height: 208px;
     object-fit: cover;
     position: absolute;
     z-index: -1;
@@ -78,7 +69,7 @@ main{
 
 #movie-search{
     border: none;
-    margin-left: 8px;
+    margin-left: .5em;
     height: 36px;
     width: 91.5%;
 }
@@ -89,13 +80,13 @@ main{
 
 form{
     background-color: #FFFFFF;
-    margin-top: 24px;
+    margin-top: 1.5em;
     border: 1px #D1D5DB solid;
     border-radius: 6px;
     width: 462px;
     display: flex;
     align-items: center;
-    padding-left: 12px;
+    padding-left: 0.75em;
     height: 36px;
 }
 
@@ -116,26 +107,54 @@ form #submit-button{
 /* Header Typography */
 
 #header-link-container h1{
-    font-size: 42px;
+    font-size: 2.625rem;
     color: #FFFFFF;
 }
 
 #header-link-container a{
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
     text-decoration: none;
     color: #FFFFFF;
 }
 
 #movie-search{
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 500;
     color: #6B7280;
 }
 
 form #submit-button{
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #374151;
+}
+
+@media screen and (max-width: 440px) {
+    #header-link-container h1{
+        font-size: 1.5rem;
+        color: #FFFFFF;
+    }
+
+    #header-link-container{
+        max-width: 88%;
+    }
+
+    #header-link-container a{
+        font-size: 0.75rem;
+    }
+
+    #search-bar{
+        border: 1px #D1D5DB solid;
+        max-width: 88%;
+    }
+    
+    form #submit-button{
+        background-color: #F9FAFB;
+        border: 1px #D1D5DB solid;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+    }
+    
 }
 
 /* Main Layout */
@@ -177,12 +196,12 @@ form #submit-button{
 }
 
 .search-result-container:first-child{
-    margin-top: 44px;
+    margin-top: 2.75em;
 }
 
 .search-result-container:last-child{
     border-bottom: none;
-    margin-bottom: 32px;
+    margin-bottom: 2em;
 }
 
 .film-search-results-container{
@@ -221,8 +240,7 @@ form #submit-button{
     display: flex;
     align-items: center;
     padding: 0;
-    margin-top: 16px;
-    margin-bottom: 12px;
+    margin-bottom: .75em;
 }
 
 .film-title, .film-rating{
@@ -237,11 +255,11 @@ form #submit-button{
     align-items: center;
     gap: 20px;
     margin-top: 0px;
-    margin-bottom: 12px;
+    margin-bottom: .75em;
 }
 
 .film-plot{
-    margin-top: 8px;
+    margin-top: .5em;
 }
 
 .add-to-watchlist-container{
@@ -265,6 +283,28 @@ form #submit-button{
     flex-direction: row;
 }
 
+@media screen and (max-width: 440px) {
+    .poster-container{
+        width: 75px;
+        height: 111px;
+    }
+
+    .poster-container img{
+        width: 100%;
+        height: 111px;
+    }
+
+    .search-result-container{
+        column-gap: 4px;
+    }
+
+    .film-details-container{
+        flex-direction: column;
+        align-items: start;
+        gap: .5rem;
+    }
+}
+
 /* Main Typography */
 
 #default-message{
@@ -275,22 +315,22 @@ form #submit-button{
 .film-title{
     font-size: 18px;
     font-weight: 500;
-    margin-right: 8px;
+    margin-right: .5em;
 }
 
 .film-rating{
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 400;
-    margin-left: 4px;
+    margin-left: .25em;
 }
 
 .film-details{
-font-size: 12px;
+font-size: 0.75rem;
 color: #111827;
 }
 
 .film-plot{
-    font-size: 14px;
+    font-size: .875rem;
     color: #6B7280;
 }
 
@@ -298,19 +338,23 @@ color: #111827;
 
 /* Watchlist Header */
 .watchlist-header-container{
-    height: 208px;
-    grid-template-rows: repeat(3, 1fr);
-    display: grid;
-    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
 #watchlist-header-background{
     background-color: #0E0E0E;
-    object-fit: cover;
+    height: 100%;
     width: 100%;
-    height: 208px;
+    object-fit: cover;
     position: absolute;
     z-index: -1;
+}
+
+.watchlist-header-container #header-link-container{
+    margin-bottom: 2.75em;
 }
 
 /* Watchlist Main */
@@ -339,18 +383,18 @@ color: #111827;
     "post ftc ftc";
     width: 84%;
     max-height: 100%;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 1.25em;
+    padding-bottom: 1.25em;
     border-bottom: 1px solid #E5E7EB;
 }
 
 .watchlist-films-container:first-child{
-    margin-top: 36px;
+    margin-top: 2.25em;
 }
 
 .watchlist-films-container:last-child{
     border-bottom: none;
-    margin-bottom: 32px;
+    margin-bottom: 2em;
 }
 
 .watchlist-add-cta{
@@ -370,7 +414,7 @@ color: #111827;
 }
 
 #watchlist-add-movie-link{
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
     text-decoration: none;
     color: #363636;
@@ -381,23 +425,48 @@ color: #111827;
     flex-direction: column;
 }
 
+@media screen and (max-width: 440px) {
+    
+    .watchlist-header-container #header-link-container{
+        min-width: 0;
+        max-width: 88%;
+    /* justify-self: center; */
+    }
+
+    .watchlist-header-container #header-link-container h1{
+        font-size: 1.5rem;
+        color: #FFFFFF;
+    }
+
+    .watchlist-header-container #header-link-container a{
+        font-size: 0.75rem;
+    }
+
+    .film-details-container{
+        flex-direction: column;
+        align-items: start;
+        gap: .5rem;
+    }
+
+}
+
 /* Watchlist Main Typography*/
 
 #error-message{
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.125rem;
     color: #DFDDDD;
 }
 
 #watchlist-default-message{
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 700;
     color: #DFDDDD;
 }
 
 
 .watchlist-cta{
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #111827;
 }
 
